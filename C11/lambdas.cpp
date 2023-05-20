@@ -5,7 +5,7 @@ definition of inline functionality
 
 可以写在表达式里头 临时
 
-[capture](){}
+[capture]()mutable throwSpec ->retType{}
 */
 
 #include<iostream>
@@ -31,7 +31,7 @@ int main(){
     f();
     cout << id << endl;
 
-    //test2
+    //test3
     int id2 = 0;
     auto q = [id2]() mutable {
         cout << id2 << endl;
