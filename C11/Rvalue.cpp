@@ -1,7 +1,7 @@
 // 右值 左值    operator=  的左右侧  | 临时对象 将亡值
 // 不必要的copy  unnecessary 临时对象 放到容器去 移动构造
 // right hand side object is an rvalue, then left hand can steal resources
-// 完美转发 perfect forwarding
+// 完美转发 perfect forwarding | 参数在函数之间传递 保持原始类别和常量性
 
 #include <iostream>
 #include <vector>
@@ -25,6 +25,18 @@ public:
     }
 };
 
+
+template <typename T>
+T&& forward(typename std::remove_reference<T>::type& param)
+{
+    return static_cast<T&&>(param);
+}
+
+template <typename T>
+T&& forward(typename std::remove_reference<T>::type&& param)
+{
+    return static_cast<T&&>(param);
+}
 
 int main() {
     // insert(...,&x)   copy  重新分配一块内存 复制过来
